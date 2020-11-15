@@ -1,10 +1,11 @@
 import express from 'express';
 import dotenv from 'dotenv';
 import products from './data/products.js';
-import mongoose from 'mongoose';
+import colors from 'colors';
+import connectDB from './config/db.js';
 
 dotenv.config();
-
+connectDB();
 const app = express();
 
 app.get('/api', (req, res) => {
@@ -18,22 +19,10 @@ app.get('/api/products/:id', (req, res) => {
   res.json(product);
 });
 
-const DB = process.env.DB_URI;
-mongoose
-  .connect(DB, {
-    useNewUrlParser: true,
-    useCreateIndex: true,
-    useFindAndModify: false,
-    useUnifiedTopology: true,
-  })
-  .then((con) =>
-    console.log(
-      `MongoDB connected.... \n database user: ${con.connections[0].user}`
-    )
-  );
-
 const PORT = process.env.PORT;
 app.listen(
   PORT,
-  console.log(`Server running in ${process.env.NODE_ENV} on port ${PORT}`)
+  console.log(
+    `Server running in ${process.env.NODE_ENV} on port ${PORT}`.yellow.bold
+  )
 );
