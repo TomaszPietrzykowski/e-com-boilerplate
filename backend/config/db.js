@@ -10,10 +10,11 @@ const connectDB = async () => {
       useUnifiedTopology: true,
     });
     console.log(
-      `MongoDB connected.... \n database user: ${conn.connections[0].user}.cyan.underline`
+      `MongoDB connected.... \n database user: ${conn.connections[0].user}`.cyan
+        .underline
     );
   } catch (err) {
-    console.error(`Error connecting DB: ${err.message}`);
+    console.error(`Error connecting DB: ${err.message}`.red.underline.bold);
     process.exit(1);
   }
 };
