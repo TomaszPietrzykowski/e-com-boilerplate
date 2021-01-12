@@ -85,14 +85,8 @@ res.json(updatedOrder)
 const getMyOrders = asyncHandler(async (req, res) => {
   const orders = await Order.find({ user: req.user._id })
 
-  if (orders) {
-
 res.json(orders)
 
-  } else {
-    res.status(404);
-    throw new Error('No orders found');
-  }
 });
 
 export { addOrderItems, getOrderById, updateOrderToPaid, getMyOrders };
