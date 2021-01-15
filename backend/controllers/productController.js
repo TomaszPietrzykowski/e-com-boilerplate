@@ -36,7 +36,7 @@ const deleteProduct = asyncHandler(async (req, res) => {
   }
 });
 
-// @description: Create a product
+// @description: Create a sample product
 // @route: POST /api/products
 // @access: Private/Admin
 const createProduct = asyncHandler(async (req, res) => {
