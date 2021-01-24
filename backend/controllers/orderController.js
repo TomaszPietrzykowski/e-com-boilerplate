@@ -79,7 +79,7 @@ res.json(updatedOrder)
   }
 });
 
-// @description: Update order to paid
+// @description: Update order to delivered
 // @route: GET /api/orders/:id/deliver
 // @access: Private/Admin
 const updateOrderToDelivered = asyncHandler(async (req, res) => {
