@@ -69,10 +69,7 @@ export const orderDetailsReducer = (
   }
 };
 
-export const orderPayReducer = (
-  state = { },
-  action
-) => {
+export const orderPayReducer = (state = {}, action) => {
   switch (action.type) {
     case ORDER_PAY_REQUEST:
       return {
@@ -88,17 +85,14 @@ export const orderPayReducer = (
         loading: false,
         error: action.payload,
       };
-      case ORDER_PAY_RESET:
-        return {}
+    case ORDER_PAY_RESET:
+      return {};
     default:
       return state;
   }
 };
 
-export const orderDeliverReducer = (
-  state = { },
-  action
-) => {
+export const orderDeliverReducer = (state = {}, action) => {
   switch (action.type) {
     case ORDER_DELIVER_REQUEST:
       return {
@@ -114,18 +108,14 @@ export const orderDeliverReducer = (
         loading: false,
         error: action.payload,
       };
-      case ORDER_DELIVER_RESET:
-        return {}
+    case ORDER_DELIVER_RESET:
+      return {};
     default:
       return state;
   }
 };
 
-
-export const orderListMyReducer = (
-  state = { orders: [] },
-  action
-) => {
+export const orderListMyReducer = (state = { orders: [] }, action) => {
   switch (action.type) {
     case ORDER_LIST_MY_REQUEST:
       return {
@@ -149,10 +139,7 @@ export const orderListMyReducer = (
   }
 };
 
-export const orderListReducer = (
-  state = { orders: [] },
-  action
-) => {
+export const orderListReducer = (state = { orders: [] }, action) => {
   switch (action.type) {
     case ORDER_LIST_REQUEST:
       return {

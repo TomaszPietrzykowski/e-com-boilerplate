@@ -27,7 +27,12 @@ export const productListReducer = (state = { products: [] }, action) => {
     case PRODUCT_LIST_REQUEST:
       return { loading: true, products: [] };
     case PRODUCT_LIST_SUCCESS:
-      return { loading: false, products: action.payload.products, pages: action.payload.pages, page: action.payload.page };
+      return {
+        loading: false,
+        products: action.payload.products,
+        pages: action.payload.pages,
+        page: action.payload.page,
+      };
     case PRODUCT_LIST_FAIL:
       return { loading: false, error: action.payload };
     default:
@@ -51,10 +56,7 @@ export const productDetailsReducer = (
   }
 };
 
-export const productDeleteReducer = (
-  state = {  },
-  action
-) => {
+export const productDeleteReducer = (state = {}, action) => {
   switch (action.type) {
     case PRODUCT_DELETE_REQUEST:
       return { loading: true };
@@ -67,10 +69,7 @@ export const productDeleteReducer = (
   }
 };
 
-export const productCreateReducer = (
-  state = {},
-  action
-) => {
+export const productCreateReducer = (state = {}, action) => {
   switch (action.type) {
     case PRODUCT_CREATE_REQUEST:
       return { loading: true };
@@ -85,10 +84,7 @@ export const productCreateReducer = (
   }
 };
 
-export const productUpdateReducer = (
-  state = { product: {} },
-  action
-) => {
+export const productUpdateReducer = (state = { product: {} }, action) => {
   switch (action.type) {
     case PRODUCT_UPDATE_REQUEST:
       return { loading: true };
@@ -103,10 +99,7 @@ export const productUpdateReducer = (
   }
 };
 
-export const productReviewCreateReducer = (
-  state = { },
-  action
-) => {
+export const productReviewCreateReducer = (state = {}, action) => {
   switch (action.type) {
     case PRODUCT_CREATE_REVIEW_REQUEST:
       return { loading: true };
@@ -115,7 +108,7 @@ export const productReviewCreateReducer = (
     case PRODUCT_CREATE_REVIEW_FAIL:
       return { loading: false, error: action.payload };
     case PRODUCT_CREATE_REVIEW_RESET:
-      return { };
+      return {};
     default:
       return state;
   }

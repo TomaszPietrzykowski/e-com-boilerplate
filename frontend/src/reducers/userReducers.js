@@ -23,7 +23,7 @@ import {
   USER_UPDATE_REQUEST,
   USER_UPDATE_SUCCESS,
   USER_UPDATE_FAIL,
-  USER_UPDATE_RESET
+  USER_UPDATE_RESET,
   // USER_UPDATE_PROFILE_RESET,
 } from '../constants/userConstants';
 
@@ -100,7 +100,7 @@ export const userListReducer = (state = { users: [] }, action) => {
   }
 };
 
-export const userDeleteReducer = (state = { }, action) => {
+export const userDeleteReducer = (state = {}, action) => {
   switch (action.type) {
     case USER_DELETE_REQUEST:
       return { loading: true };

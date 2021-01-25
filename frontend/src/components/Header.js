@@ -1,10 +1,10 @@
 import React from 'react';
-import { Route } from 'react-router-dom'
+import { Route } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { LinkContainer } from 'react-router-bootstrap';
 import { Container, Navbar, Nav, NavDropdown } from 'react-bootstrap';
 import { logout } from '../actions/userActions';
-import SearchBox from './SearchBox'
+import SearchBox from './SearchBox';
 
 const Header = () => {
   const dispatch = useDispatch();
@@ -47,18 +47,17 @@ const Header = () => {
                 </LinkContainer>
               )}
               {userInfo && userInfo.isAdmin && (
-                 <NavDropdown title="Admin" id='adminmenu'>
-                 <LinkContainer to='/admin/userlist'>
-                   <NavDropdown.Item>Users</NavDropdown.Item>
-                 </LinkContainer>
-                 <LinkContainer to='/admin/productlist'>
-                   <NavDropdown.Item>Products</NavDropdown.Item>
-                 </LinkContainer>
-                 <LinkContainer to='/admin/orderlist'>
-                   <NavDropdown.Item>Orders</NavDropdown.Item>
-                 </LinkContainer>
-
-               </NavDropdown>
+                <NavDropdown title='Admin' id='adminmenu'>
+                  <LinkContainer to='/admin/userlist'>
+                    <NavDropdown.Item>Users</NavDropdown.Item>
+                  </LinkContainer>
+                  <LinkContainer to='/admin/productlist'>
+                    <NavDropdown.Item>Products</NavDropdown.Item>
+                  </LinkContainer>
+                  <LinkContainer to='/admin/orderlist'>
+                    <NavDropdown.Item>Orders</NavDropdown.Item>
+                  </LinkContainer>
+                </NavDropdown>
               )}
             </Nav>
           </Navbar.Collapse>

@@ -21,11 +21,15 @@ import {
 
 import axios from 'axios';
 
-export const listProducts = (keyword = '', pageNumber = '') => async (dispatch) => {
+export const listProducts = (keyword = '', pageNumber = '') => async (
+  dispatch
+) => {
   try {
     dispatch({ type: PRODUCT_LIST_REQUEST });
 
-    const { data } = await axios.get(`/api/products?keyword=${keyword}&pageNumber=${pageNumber}`);
+    const { data } = await axios.get(
+      `/api/products?keyword=${keyword}&pageNumber=${pageNumber}`
+    );
 
     dispatch({ type: PRODUCT_LIST_SUCCESS, payload: data });
   } catch (err) {
@@ -56,7 +60,6 @@ export const listProductDetails = (id) => async (dispatch) => {
     });
   }
 };
-
 
 export const deleteProduct = (id) => async (dispatch, getState) => {
   try {
@@ -110,7 +113,7 @@ export const createProduct = () => async (dispatch, getState) => {
 
     dispatch({
       type: PRODUCT_CREATE_SUCCESS,
-      payload: data
+      payload: data,
     });
   } catch (err) {
     dispatch({
@@ -135,16 +138,20 @@ export const updateProduct = (product) => async (dispatch, getState) => {
 
     const config = {
       headers: {
-        "Content-Type": "application/json",
+        'Content-Type': 'application/json',
         Authorization: `Bearer ${userInfo.token}`,
       },
     };
 
-    const { data } = await axios.put(`/api/products/${product._id}`, product, config);
+    const { data } = await axios.put(
+      `/api/products/${product._id}`,
+      product,
+      config
+    );
 
     dispatch({
       type: PRODUCT_UPDATE_SUCCESS,
-      payload: data
+      payload: data,
     });
   } catch (err) {
     dispatch({
@@ -157,7 +164,10 @@ export const updateProduct = (product) => async (dispatch, getState) => {
   }
 };
 
-export const createProductReview = (productId, review) => async (dispatch, getState) => {
+export const createProductReview = (productId, review) => async (
+  dispatch,
+  getState
+) => {
   try {
     dispatch({
       type: PRODUCT_CREATE_REVIEW_REQUEST,
@@ -169,7 +179,7 @@ export const createProductReview = (productId, review) => async (dispatch, getSt
 
     const config = {
       headers: {
-        "Content-Type": "application/json",
+        'Content-Type': 'application/json',
         Authorization: `Bearer ${userInfo.token}`,
       },
     };
