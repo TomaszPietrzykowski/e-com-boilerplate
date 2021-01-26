@@ -1,6 +1,7 @@
 import path from 'path';
 import express from 'express';
 import dotenv from 'dotenv';
+import cors from 'cors';
 import colors from 'colors';
 import morgan from 'morgan';
 import connectDB from './backend/config/db.js';
@@ -16,6 +17,9 @@ import {
 dotenv.config();
 connectDB();
 const app = express();
+
+app.use(cors());
+app.options('*', cors());
 
 if (process.env.NODE_ENV === 'development') {
   app.use(morgan('dev'));
@@ -39,7 +43,7 @@ app.use(
 );
 
 if (process.env.NODE_ENV === 'production') {
-  app.use(express.static(path.join(__dirname, '/frontend/build')));
+  app.use(express.static(path.join(__dirname, '/frontend')));
 
   app.get('*', (req, res) =>
     res.sendFile(path.resolve(__dirname, 'frontend', 'build', 'index.html'))
@@ -54,10 +58,4 @@ app.use(notFound);
 
 app.use(errorHandler);
 
-const PORT = process.env.PORT;
-app.listen(
-  PORT,
-  console.log(
-    `Server running in ${process.env.NODE_ENV} on port ${PORT}`.yellow.bold
-  )
-);
+app.listen();
