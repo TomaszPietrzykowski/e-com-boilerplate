@@ -2,8 +2,7 @@
   "name": "e-com-boilerplate",
   "version": "1.0.0",
   "description": "mern e-commerce code base",
-  "main": "server.js",
-  "type": "module",
+  "main": "app.js",
   "scripts": {
     "start": "node app",
     "server": "nodemon app",

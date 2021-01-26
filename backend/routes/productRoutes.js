@@ -1,24 +1,21 @@
-import express from 'express';
+const express = require('express');
 const router = express.Router();
-import {
-  getProducts,
-  getProductById,
-  deleteProduct,
-  updateProduct,
-  createProduct,
-  createProductReview,
-  getTopProducts,
-} from '../controllers/productController.js';
-import { protect, admin } from '../middleware/authMiddleware.js';
+const productController = require('../controllers/productController.js');
+const auth = require('../middleware/authMiddleware.js');
 
-router.route('/').get(getProducts).post(protect, admin, createProduct);
-router.get('/top', getTopProducts);
+router
+  .route('/')
+  .get(productController.getProducts)
+  .post(auth.protect, auth.admin, productController.createProduct);
+router.get('/top', productController.getTopProducts);
 router
   .route('/:id')
-  .get(getProductById)
-  .put(protect, admin, updateProduct)
-  .delete(protect, admin, deleteProduct);
+  .get(productController.getProductById)
+  .put(auth.protect, auth.admin, productController.updateProduct)
+  .delete(auth.protect, auth.admin, productController.deleteProduct);
 
-router.route('/:id/reviews').post(protect, createProductReview);
+router
+  .route('/:id/reviews')
+  .post(auth.protect, productController.createProductReview);
 
-export default router;
+module.exports = router;

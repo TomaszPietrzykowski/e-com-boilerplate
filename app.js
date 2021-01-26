@@ -1,18 +1,15 @@
-import path from 'path';
-import express from 'express';
-import dotenv from 'dotenv';
-import cors from 'cors';
-import colors from 'colors';
-import morgan from 'morgan';
-import connectDB from './backend/config/db.js';
-import productRoutes from './backend/routes/productRoutes.js';
-import userRoutes from './backend/routes/userRoutes.js';
-import orderRoutes from './backend/routes/orderRoutes.js';
-import uploadRoutes from './backend/routes/uploadRoutes.js';
-import {
-  notFound,
-  errorHandler,
-} from './backend/middleware/errorMiddleware.js';
+const path = require('path');
+const express = require('express');
+const dotenv = require('dotenv');
+const cors = require('cors');
+const colors = require('colors');
+const morgan = require('morgan');
+const connectDB = require('./backend/config/db.js');
+const productRoutes = require('./backend/routes/productRoutes.js');
+const userRoutes = require('./backend/routes/userRoutes.js');
+const orderRoutes = require('./backend/routes/orderRoutes.js');
+const uploadRoutes = require('./backend/routes/uploadRoutes.js');
+const errorMiddleware = require('./backend/middleware/errorMiddleware.js');
 
 dotenv.config();
 connectDB();
@@ -31,12 +28,10 @@ app.use('/api/products', productRoutes);
 app.use('/api/users', userRoutes);
 app.use('/api/orders', orderRoutes);
 app.use('/api/upload', uploadRoutes);
-
 app.get('/api/config/paypal', (req, res) =>
   res.send(process.env.PAYPAL_CLIENT_ID)
 );
 
-const __dirname = path.resolve(); // __dirname unavailable for es6 syntax
 app.use(
   '/public/images',
   express.static(path.join(__dirname, '/public/images'))
@@ -54,8 +49,7 @@ if (process.env.NODE_ENV === 'production') {
   });
 }
 
-app.use(notFound);
+app.use(errorMiddleware.notFound);
+app.use(errorMiddleware.errorHandler);
 
-app.use(errorHandler);
-
-app.listen();
+app.listen(console.log('server started...'));
